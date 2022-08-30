@@ -1,0 +1,110 @@
+@font-face {
+    font-family: Barlow;
+    src: url('../fonts/Barlow-Regular.ttf');
+}
+
+body {
+    background-image: url('../img/ValorantWallpaper_Singularity.jpg');
+    background-size: 100% 100%;
+}
+
+.profil-container {
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+}
+
+.container-stats {
+    width: 100%;
+}
+
+/*.sidebar {
+    float: left;
+    height: 100%;
+    width: 5%;
+    background-color: #333;
+    position: fixed;
+}*/
+
+.container-stats {
+    width: 66%;
+    height: 20%;
+    margin: 0 0 0 10%;
+    padding-top: 5%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container-level, .container-num-videos, .container-games-won {
+    width: 30%;
+    height: 90%;
+    background-color: #f9f9f9;
+    float: left;
+    margin-left: 30px;
+    margin-right: 30px;
+    border-radius: 10px;
+}
+.stats-icon-level, .stats-icon-videos, .stats-icon-wins {
+    margin-top: 7.5%;
+    margin-left: 5%;
+    width: 20%;
+    height: 35%;
+    float: left;
+}
+.stats-icon-level {
+    background: url('../img/icons/level-signal.png');
+    background-size: 40% 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.stats-icon-videos {
+    background: url('../img/icons/videos-icon.png');
+    background-size: 40% 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.stats-icon-wins {
+    background: url('../img/icons/wins-icon.png');
+    background-size: 40% 40%;
+    background-position: center;
+    background-repeat: no-repeat;
+}
+.stats-text {
+    margin-top: 7.5%;
+    margin-left: 7.5%;
+    width: 55%;
+    height: 35%;
+    float: left;
+    display: flex;
+    align-items: center;
+    justify-content: left;
+    color: #242124;
+    text-shadow: 1px 1px 25px rgba(0, 0, 0, 1);
+    font-family: 'Barlow', sans-serif;
+    font-size: 1.3em;
+    font-weight: 500;
+}
+
+.container-history {
+    width: 64%;
+    height: 55%;
+    margin: 25px 0 0 10%;
+}
+.history-wrapper {
+    margin-left: 30px;
+    width: calc(100% - 20px);
+    height: 100%;
+    background-color: #f9f9f9;
+    border-radius: 10px;
+}
+
+.container-profil {
+    float: right;
+    height: 50%;
+    width: 15%;
+    background-color: #f9f9f9;
+    margin-top: -7.5%;
+    margin-right: 10%;
+    border-radius: 10px;
+}

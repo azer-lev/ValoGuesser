@@ -8,7 +8,7 @@ html, body{
     overflow: hidden;
 }
 
-nav {
+/*nav {
     width: 100%;
     height: 8%;
     background-color: #111111;
@@ -26,6 +26,22 @@ nav .logo {
     width: 20%;
     height: 100%;
     float: left;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.logoholder {
+    width: 60%;
+    height: 80%;
+    background-image: url('../img/logo.png');
+    background-size: 100% 100%;
+    background-position: center;
+
+}
+
+.logoholder:hover {
+    cursor: pointer;
 }
 
 nav ul{
@@ -48,9 +64,9 @@ nav ul li{
 }
 
 nav ul li .navcontainer {
-    display: flex;
     flex-direction: row;
     flex-wrap: wrap;
+    display: flex;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
@@ -91,7 +107,7 @@ nav ul li a:hover {
 }
 .loginbtn button:hover {
     cursor: pointer;
-}
+} */
 
 .video-container {
     z-index: -1;
@@ -132,6 +148,7 @@ nav ul li a:hover {
     top: 40%;
     text-shadow: 2px 2px 5px #000000;
     text-transform: uppercase;
+    z-index: 1;
 }
 
 .container-button {
@@ -153,7 +170,8 @@ nav ul li a:hover {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 1px solid #555
+    border: 1px solid #555;
+    z-index: 1;
 }
 .container-button button {
     width: 95%;
@@ -163,8 +181,6 @@ nav ul li a:hover {
     color: #fff;
     font-size: 1.5em;
     text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5);
-
-
     /*background-color: #dc495b;*/
 
     background: #ff4755; /* default color */
@@ -175,6 +191,10 @@ nav ul li a:hover {
     transition: .4s ease-out;
     transform: skewX(-10deg);
     border-radius: 10px;
+    z-index: 1;
+    -webkit-box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.75);
+    -moz-box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.75);
+    box-shadow: 0px 7px 20px 0px rgba(0,0,0,0.75);
 }
 
 .container-button button:hover {
@@ -182,6 +202,7 @@ nav ul li a:hover {
     cursor: pointer;
 }
 
+/*
 .login {
     margin-left: 20%;
     margin-top: 15%;
@@ -276,7 +297,6 @@ nav ul li a:hover {
     height: 75%;
     width: 90%;
     background: #ff4755;
-    /* "to left" / "to right" - affects initial color */
     background: linear-gradient(to left, #e4e4e4 50%, #0e1923 50%) right;
     background-size: 200%;
     transition: .4s ease-out;
@@ -294,7 +314,6 @@ nav ul li a:hover {
     height: 75%;
     width: 90%;
     background: #ff4755;
-    /* "to left" / "to right" - affects initial color */
     background: linear-gradient(to left, #ff4755 50%, #0e1923 50%) right;
     background-size: 200%;
     transition: .4s ease-out;
@@ -317,6 +336,7 @@ nav ul li a:hover {
 }
 
 .c-register, .c-login {
+    border-top: 1px solid rgba(236,232,225,.3);
     margin-top: 10%;
     width: 50%;
     height: 80%;
@@ -333,3 +353,17 @@ nav ul li a:hover {
     font-family: 'Source Sans Pro', sans-serif;
     font-size: 0.7em;
 }
+
+.login-wrapper-logo {
+    position: absolute;
+    width: 25%;
+    height: 10%;
+    left: 37.5%;
+}
+.login-wrapper-logo-container {
+    width: 100%;
+    height: 100%;
+    background-image: url('../img/logo.png');
+    background-size: 100% 100%;
+    background-position: center;
+}*/
