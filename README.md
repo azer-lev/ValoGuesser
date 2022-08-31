@@ -27,29 +27,19 @@ The webserver contains all needed files to setup the website for this project.
 - The gameplay-servers will connect to the web-server and POST their information to the REST-API
 - V1 doesnt not support device resizing until now, for the second version is this feature in planning
 
-![Webserver](https://raw.githubusercontent.com/azer-lev/ValoGuesser/main/web-server/assets/img/github-images/login-page.PNG?token=GHSAT0AAAAAABYD4ALW4PNABQG62UR72XCKYYPIUIA)
+![Webserver](https://raw.githubusercontent.com/azer-lev/ValoGuesser/main/web-server/assets/img/github-images/starting-page.PNG?token=GHSAT0AAAAAABYD4ALXDCVOQOOUS64Q5NLIYYPIWZQ)
 
-### 2. Half-Edge Collapse
+### 2. Gameplay Server
 
-The technique chosen for vertex removal was the *Half-Edge Collapse* which works removing a vertex and reconnecting all its connections to another vertex:
+The gameplay server runs as a Node.js project, using express as the main framework to receive the client requests.
 
+Idea:
 
-
-Pseudo-code:
-
-- Go to the vertex to be removed (v1 - defined on priority queue)
-- Check all the vertex that are connected to that vertex
-- Remove v1 and reconnect all its connections to v2  
+- the gameplay server can be run on a different device then the webserver
+- also its possible to use multiple gameplay-server and connect them all to the same webserver, for a better ressource management
+- the gameplay-server is create a predefined number of lobby-rooms, for the webserver
 
 
 ## References
 
-
-David Luebke, Benjamin Watson, Jonathan D. Cohen, Martin Reddy, and Amitabh Varshney. 2002. *Level of Detail for 3D Graphics*. Elsevier Science Inc., New York, NY, USA.
-
-OpenGL Tutorials. *Tutorial 1: Opening a Window*, Available at: http://www.opengl-tutorial.org/beginners-tutorials/tutorial-1-opening-a-window/ (Accessed: 3rd April 2016).
-
-Mesh Simplification. Standford course (CS 468-10-fall) Lecture Notes. Available on: http://graphics.stanford.edu/courses/cs468-10-fall/LectureSlides/08_Simplification.pdf
-
-Shene, Ching-Kuang. *Mesh Simplification*. Classes notes. Michigan Technological University. Available on:
-http://www.cs.mtu.edu/~shene/COURSES/cs3621/SLIDES/Simplification.pdf
+Tim Wernecke, Pascal Bednarek, 2022. *ValoGuesser*.
