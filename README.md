@@ -27,7 +27,7 @@ The webserver contains all needed files to setup the website for this project.
 - The gameplay-servers will connect to the web-server and POST their information to the REST-API
 - V1 doesnt not support device resizing until now, for the second version is this feature in planning
 
-![Webserver](https://raw.githubusercontent.com/azer-lev/ValoGuesser/main/web-server/assets/img/github-images/starting-page.PNG?token=GHSAT0AAAAAABYD4ALXDCVOQOOUS64Q5NLIYYPIWZQ)
+![Webserver](https://github.com/azer-lev/ValoGuesser/blob/main/web-server/assets/img/github-images/starting-page.PNG?raw=true)
 
 ### 2. Gameplay Server
 
