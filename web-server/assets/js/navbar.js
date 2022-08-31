@@ -1,9 +1,9 @@
 let loginWindowOpen = false
 let debug = true
 
-let landingPageUrl = 'http://localhost/ValoGuesser/index.php'
-let loginPageUrl = 'http://localhost/ValoGuesser/login.php'
-let registerPageUrl = 'http://localhost/ValoGuesser/register.php'
+let landingPageUrl = 'http://localhost/ValoGuesser/web-server/index.php'
+let loginPageUrl = 'http://localhost/ValoGuesser/web-server/login.php'
+let registerPageUrl = 'http://localhost/ValoGuesser/web-server/register.php'
 
 if(document.getElementById("loginbtn")) {
   document.getElementById("loginbtn").onclick = () => {
@@ -14,7 +14,7 @@ if(document.getElementById("loginbtn")) {
 
 if(document.getElementById("logoutbtn")) {
   document.getElementById("logoutbtn").onclick = () => {
-    window.location = "logout.php"
+    window.location = "web-server/logout.php"
   }
 }
 
