@@ -9,7 +9,9 @@ if(isset($_POST['username']) && isset($_POST['sever-authentication'])) {
     $_username = trim($_POST['username']);
     $_userid = getUserIdByName($_username);
 
-    print_r(u_hash($_userid, $_username));
+    $u_hash = new TokenHash($_userid, $_username);
+
+    print_r($u_hash->getHash());
 }
 
 function addHashToDb($hash, $userid) {
