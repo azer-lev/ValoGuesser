@@ -1,5 +1,5 @@
 
-
-module.exports.getPlayerByToken = async function(token) {
+export async function getPlayerByToken(token)
+{
 
 }
