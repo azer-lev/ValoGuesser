@@ -18,7 +18,7 @@ if($user != "no-login") {
             
             <ul>
                 <!-- IF LOGGED IN -->
-                <li><div class="navcontainer noselect"><a>How to play</a></div></li>
+                <li><div class="navcontainer noselect"><a href="play.php">Play</a></div></li>
                 <li><div class="navcontainer noselect"><a href="leaderboard.php">Leaderboard</a></div></li>
                 <?php 
                     if($loggedIn) {
