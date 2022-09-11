@@ -1,171 +1,168 @@
-import express from 'express';
-import validation from '../validation/duell-validation'
-import requests from '../helpers/request'
-import axios from 'axios'
-import Player from '../helpers/Player';
-
+import express, { application, request } from "express";
+import axios from "axios";
+import { GameMode, RoomObject, Player, Team } from "./aufbau";
+import { BodyChild } from "./routing";
+import { app } from "..";
 let router = express.Router();
 
-enum GamePlayMode {
-    oneVsOne,
-    twoVsTwo
-}
-
-enum Teams {
-    teamOne,
-    teamTwo,
-    undefined
-}
-
-let playerInformation = [];
-
-/*
-    votes: []
-    get score() => 
-    video-id: string
-    teams: []
-    key: string
-*/
-class Votes {
-    playersTeamOne = Array();
-    playersTeamTwo = Array();
-    votes = Array();
-    constructor(players) {
-        if(players !== undefined && Array.isArray(players)) {
-            for(let i = 0; i < players.length; i++) {
-                i/2 < players.length / 2 ? 
-                    this.playersTeamOne.push(players[i]) : this.playersTeamTwo.push(players[i]);
-            }
-        }
-    }
-
-    createVote(videoId, playerToken, vote) {
-        this.votes.push({
-            videoId: videoId,
-            playerToken: playerToken,
-            vote: vote
-        })
-    }
-
-    computeTeamScore(teamId) {
-        if(teamId == 0) {
-            votes.forEach(vote => {
-                if(this.getPlayerTeam(vote[playerToken]) == Teams.teamOne) {
-                    //PHP Request vote richtig?
-                }
-            });
-        }
-
-        if(teamId == 0) {
-            votes.forEach(vote => {
-                if(this.getPlayerTeam(vote[playerToken]) == Teams.teamOne) {
-                    //PHP Request vote richtig?
-                }
-            });
-        }
-    }
-
-    getPlayerTeam(playerToken) {
-        for(let i = 0; i < this.playersTeamOne.length; i++) {
-            if(this.playersTeamOne[i].token == playerToken) {
-                return Teams.teamOne
-            }else if(this.playersTeamTwo[i].token == playerToken) {
-                return Teams.teamTwo
-            }
-        }
-        return Teams.undefined
-    }
-
-
-}
-
+/* Nullable Type instead of "Type?" */
+type Nullable<T> = T | null;
 
 let rooms: RoomObject[] = [];
 
-router.get('/room', async(req, res) => {
+function getRoom(gameMode: GameMode) {
+  let room: Nullable<RoomObject> = null;
 
-});
-/*
+  for (const _room of rooms) {
+    // for 1vs1 get the room key of the existing room with 1person
+    if (
+      (gameMode == GameMode.oneVsOne && _room.players.length == 1) ||
+      (gameMode == GameMode.twoVsTwo &&
+        _room.players.length < 4 &&
+        _room.players.length != 0)
+    ) {
+      room = _room;
+    }
+  }
+
+  if (room == null) {
+    room = new RoomObject(Math.floor(Math.random() * 100), gameMode);
+    rooms.push(room);
+  } else {
+    // create new player to push him to the existing room
+    const player = new Player(1, Team.two);
+    room.players.push(player);
+  }
+
+  return room;
+}
+
+function startGame() {
+  //* send videoId recv from azer
+}
+class SetPlayer { //extends BodyChild
+  public playerToken!: string;
+  public gameMode!: GameMode;
+  public roomKey!: string;
+  public privateLobby!: boolean; // todo
+
+  constructor(_name: string) {
+    //super();
+  }
+
+  get isValid() {
+    return (
+      this.playerToken != null &&
+      this.gameMode != null &&
+      this.roomKey != null &&
+      this.privateLobby != null
+    );
+  }
+}
+
+/*(async async => {
+    let setPlayerObj: SetPlayer = new SetPlayer('setPlayer');
+    let setPlayer = await router2.post<SetPlayer>(setPlayerObj);
+
+    const gameMode = setPlayer.gameMode;
+
+    let room!: RoomObject;
+
+    if (gameMode == GameMode.oneVsOne)
+    {
+        room = getRoom(gameMode);
+
+        if (room.isFull) 
+        {
+            startGame();
+        }
+    }
+
+    console.log('/setPlayer', room);
+})();*/
+
+console.log("wassad", router);
+console.log('test', router);
+
+
+export class RouterOut {
+  constructor() {}
+
+  public async setPlayer() {
+    /*
 
 Information needed: 
     player-token -> to authenticate the player
     gameplay-mode -> 1vs1, 2vs2, ...
     room-key -> to connect the players to each other
+    private-lobby: boolean for private lobbys // todo: return the roomkey
 */
-router.post('/setPlayer', async(req, res) => {
-    if(validation.startInformation_correct(req.body)) {
 
-        const playerId = req.body.playerId;
-        const roomKey = req.body.roomKey;
-        const gameMode = req.body.gamePlayMode;
+    console.log('SetPlayer initialized', app)
 
-        if (gameMode == GamePlayMode.oneVsOne)
-        {
-            let roomKey!: number; // string
-            let room: RoomObject;
-            rooms.forEach(_room => {
-                if (_room.players.length == 1) {
-                    roomKey = _room.key;
-                    room = _room;
-                }
-            });
+    app.post("setPlayer", (req: {body: SetPlayer}, res) => {
+        console.log('setPlayer');
 
+        res.send('Server error!')
+      if (req.body.isValid) {
+        const gameMode = req.body.gameMode;
 
-            if (roomKey == null)
-            {
-                room = new RoomObject(rand(10000), gameMode);
-            }
-            else 
-            {
-                room = rooms[roomKey];
-            }
+        let room!: RoomObject;
 
-            if (room == null)
-            {
-                room.push({
-                    votes: [],
-                    get score() {
-                        
-                    },
-                    videoId: '',
-                    teams: [playerId]
-                });
-            } else {
-                room.teams.push(playerId)
-            }
-            
-        }
-        else if (req.body.gamePlaymode == GamePlayMode.twoVsTwo)
-        {
+        if (gameMode == GameMode.oneVsOne) {
+          room = getRoom(gameMode);
 
+          if (room.isFull) {
+            startGame();
+          }
         }
 
+        console.log("/setPlayer", room);
 
-        const p = new Player(req.body.tempPlayerKey);
+        //const p = new Player(req.body.tempPlayerKey);
 
-        let players = [];
+        //let players = [];
+
+        //const data = await p.getPlayerUID();
+        //console.log(data);
+      } else {
+        res.status(400).send("Server error! Try again");
+      }
+    });
+  }
+}
 
 
-
-
-        const data = await p.getPlayerUID();
-        console.log(data);
-    }else {
-        res.status(400).send('Server error! Try again')
-    }
-})
-
-// get game data
-/*
-    player-token -> to authenticate the player
-*/
-router.post('/getGameData', async(req, res) => {
+/**
+ * playerToken or id,
+ *
+ */
+/*router.post('/setVote', async(req, res) => {
     let pi = playerInformation[req.body.playerToken];
 
     pi.score;
     pi.votes;
 
 
-});
+});*/
 
+// get game data
+/*
+    player-token -> to authenticate the player
+*/
+/*router.post('/getGameData', async(req, res) => {
+    let pi = playerInformation[req.body.playerToken];
+
+    pi.score;
+    pi.votes;
+
+
+});*/
+
+/*
 module.exports = router;
+
+function rand(arg0: number): any {
+    throw new Error('Function not implemented.');
+}
+*/
