@@ -1,6 +1,6 @@
 <?php
 
-include_once('../../inc/config.inc.php');
+include_once('../inc/config.inc.php');
 
 if(isset($_POST['username']) && isset($_POST['sever-authentication'])) {
     //TODO add server authentication

@@ -2,28 +2,33 @@
 require_once('inc/layouts/navbar.php');
 require_once('inc/helpers/VideoInformation.inc.php');
 require_once('inc/helpers/UserInformation.inc.php');
+require_once('requests/functions/getUserIdByName.php');
 
-$userId_GET = 0;
-$ownProfil = false;
-if(isset($_GET['profil-id'])) {
-    $userId_GET = trim($_GET['profil-id']);
-    if($user != "no-login" && $userId_GET == $user['user_id']) {
-        $ownProfil = true;
-    }
-}
 if(!class_exists('UserInformation')) {
     die('Classes not loaded!');
 }
+$userId = 0;
+$ownProfil = false;
+$playerLevel = 0;
+$playerName = NULL;
 
-if(isset($_GET['profil-id'])) {
-
-}else {
-    if($user == "no-login") {
-        header("location: login.php");
+if(isset($_GET['name'])) {
+    $playerName = trim($_GET['name']);
+    if($user != "no-login" && $userId == $user['user_id']) {
+        $ownProfil = true;
+        $playerName = $user['user_username'];
+    }else {
+        $playerName = trim($_GET['name']);
+        $userId = getUserIdByName($playerName);
     }
+}else if($user == "no-login") {
+    header("location: login.php");
+}else if($user != "no-login") {
+    $playerName = $user['user_username'];
+    $userId = $user['user_id'];
 }
 
-$userInformation = new UserInformation($user['user_id']);
+$userInformation = new UserInformation($userId);
 
 ?>
 <!DOCTYPE html>
@@ -41,23 +46,13 @@ $userInformation = new UserInformation($user['user_id']);
 
     <body>
         <div class="profil-container">
-            <!--<div class="sidebar">
-                <ul>
-                    <li>ICON</li>
-                    <li>ICON</li>
-                    <li>ICON</li>
-                    <li>ICON</li>
-                </ul>
-            </div>-->
-
-
             <div class="container-stats">
                 <div class="container-level">
                     <div class="stats-icon-level">
 
                     </div>
                     <div class="stats-text">
-                        Current Level:
+                        Current Level: <?php print_r(__DIR__); ?>
                     </div>
                     <div class="stats-number">
 
