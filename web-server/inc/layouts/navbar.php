@@ -5,6 +5,7 @@ require_once("inc/functions.inc.php");
 
 $loggedIn = false;
 $user = check_user();
+
 if($user != "no-login") {
     $loggedIn = true;
 }

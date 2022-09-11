@@ -1,6 +1,7 @@
 <?php
 require_once('inc/layouts/navbar.php');
-
+global $user;
+global $dbpdo;
 if($user != "no-login") {
     header("Location: index.php");
 }else {
@@ -35,7 +36,6 @@ if($user != "no-login") {
     </head>
 
     <body>
-
         <div class="container">
             <div class="login-wrapper">
                 <div class="login-wrapper-heading">
@@ -56,8 +56,6 @@ if($user != "no-login") {
                                 </div>
                             </button>
                         </div>
-
-
                     </form>
                 </div>
             </div>

@@ -15,7 +15,6 @@ require_once('inc/layouts/navbar.php');
     </head>
 
     <body>
-
         <div class="container">
             <div class="container-text noselect" id="container-text">
                 Play ValoGuesser free!
